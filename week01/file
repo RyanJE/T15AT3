@@ -1,0 +1,5 @@
+argc = 3
+(0, ./a.out)
+(1, test)
+(2, space arg)
+e
