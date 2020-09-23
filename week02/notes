@@ -1,0 +1,101 @@
+q9:
+
+Sparse Vector algorithm
+
+[2 4 6 8 0 0 0 ..... 1]
+
+Merge a sorted list of index value pairs, adding values when indexes are equal
+
+Vector add_vector(V1, V2) {
+    List l1 = V1;
+    List l2 = V2;
+    List newVector = emptylist;
+    while(l1 != NULL and l2 != NULL) {
+        check whether l1 is lower index than l2
+        yes:
+            insertList(newVector, l1->data);
+            l1 = l1->next;
+        no:
+            is l2 index == l1 index:
+            yes:
+                insertList(newVector, l1->data + l2->data);
+                l1 = l1->next;
+                l2 = l2->next;
+            no:
+                insertList(newVector, l2->data);
+                l2 = l2->next;
+    }
+    add everything else in l1 to newVector
+    add everything else in l2 to newVector
+    return newVector
+}
+
+q10:
+
+PrintPermutation(A, P):
+	Input array of items A and array of positions P of length n
+	
+	for i = 1 up to n do // for each position i
+		for j = 0 up to n - 1 do // find the item that belongs at position i
+			if P[j] = i then
+				print A[j]
+			end if
+		end for
+	end for
+O(1) space - We allocate a constant number of variables within the function
+O(n^2) time - We must iterate through the P array for each index in A
+
+PrintPermutation(A, P):
+    create a new array of length n(A)
+    iterate through P: index i:
+        newArray[P[i]] = A[i]
+    print out new array
+O(n) time - We iterate through the indexes 0 .. len(A) once and use the index for both array A and P
+O(n) space - We must allocate a new array to place the values into. This array depends on the size of A, therefore it has space complexity n, where n is the length of A.
+
+
+q11:
+
+BinaryConversion:
+    Input positive integer n
+    Output binary representation of n on a stack
+    
+    create empty stack S
+    while n > 0 do
+        push (n mod 2) into S
+        n = floor(n/2)
+    end while
+    return S
+    
+O(logn) - This algorithm halves the search space of the problem (array) each iteration. To visualise, think of this as a binary tree that we choose one branch to explore at each iteration. Height of a binary search tree is log(n).
+
+q12:
+
+Complexity of 
+
+splitList(L):
+    input: non-empty linked list L
+    output: L split into two halves
+
+    slow = head(L)
+    fast = head(L).next
+
+    while fast != NULL and fast.next != NULL do
+        slow = slow.next
+        fast = fast.next.next
+    end while
+
+    cut L between slow and slow.next
+    
+Time complexity is O(n) - total number of iterations in the loop will be n/2, however we remove the constant term 1/2. All other operations are constant time.
+    
+q13:
+
+O(n) Complexity
+This is the minimum time complexity possible as we need to modify every element of the array. There is no possible way to both ensure that every letter is lowercase and operate on less than every element of the array.
+
+void strToLower(char *s) {
+	for (int i = 0; i < strlen(s);++i){
+		s[i] = tolower(s[i]);
+	}
+}
